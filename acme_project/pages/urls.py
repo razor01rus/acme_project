@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path # type: ignore
 
 from . import views
 
 app_name = 'pages'
 
 urlpatterns = [
-    path('', views.homepage, name='homepage'),
+    path('', views.HomePage.as_view(), name='homepage'),
 ]
