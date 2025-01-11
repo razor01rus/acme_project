@@ -2,7 +2,7 @@ from django import forms # type: ignore
 from django.core.mail import send_mail # type: ignore
 from django.core.exceptions import ValidationError # type: ignore
 
-from .models import Birthday
+from .models import Birthday, Congratulation
 
 # Множество с именами участников Ливерпульской четвёрки.
 BEATLES = {'Джон Леннон', 'Пол Маккартни', 'Джордж Харрисон', 'Ринго Старр'}
@@ -13,6 +13,7 @@ class BirthdayForm(forms.ModelForm):
     class Meta:
         # Указываем модель, на основе которой должна строиться форма.
         model = Birthday
+        exclude = ('author',)
         # Указываем, что надо отобразить все поля.
         fields = '__all__'
 
@@ -44,3 +45,10 @@ class BirthdayForm(forms.ModelForm):
             raise ValidationError(
                 'Мы тоже любим Битлз, но введите, пожалуйста, настоящее имя!'
             ) 
+
+
+class CongratulationForm(forms.ModelForm):
+    
+    class Meta:
+        model = Congratulation
+        fields = ('text',) 
